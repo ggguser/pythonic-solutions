@@ -42,6 +42,10 @@ def first_max_key(stats: dict):
         if stats[key] == max_value:
             return key
 
+stats = {'a': 1000, 'b': 3000, 'c': 100, 'd': 5000}
+
+print(max(stats, key=stats.get))
+
 
 def max_key_dict_list(stats: dict):
     """
