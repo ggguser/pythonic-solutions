@@ -42,9 +42,15 @@ def first_max_key(stats: dict):
         if stats[key] == max_value:
             return key
 
-stats = {'a': 1000, 'b': 3000, 'c': 100, 'd': 5000}
 
-print(max(stats, key=stats.get))
+def max_from_dict(stats: dict):
+    """
+    Actually max() has key parameter, that we can get use of.
+    I just don't get how this piece works.
+    >>> max_from_dict({'a': 1000, 'b': 3000, 'c': 100, 'd': 5000})
+    'd'
+    """
+    return max(stats, key=stats.get)
 
 
 def max_key_dict_list(stats: dict):
@@ -60,9 +66,10 @@ def max_key_dict_list(stats: dict):
     for value in stats.values():
         if max(value) > max_value:
             max_value = max(value)
-
+    #  Getting the keys of maximal values into list
     max_keys = []
     for key, value in stats.items():
         if max(value) == max_value:
             max_keys.append(key)
     return max_keys
+
