@@ -1,3 +1,23 @@
+from collections import Counter
+
+
+def frequency_sort_string_counter(input_string: str):
+    """
+    >>> frequency_sort_string_counter('aabbbbbbccc')
+    ['b', 'c', 'a']
+    """
+    counter = Counter(input_string)
+
+    return list(char for char, freq in counter.most_common())
+
+s = 'aabbbbbbccc'
+
+c = Counter(s)
+print(c)
+
+print(Counter(s).most_common())
+
+
 def frequency_sorting(elements: list):
     """
     Reduce the list to unique elements and sort them by frequency
@@ -13,13 +33,11 @@ def frequency_sorting(elements: list):
     for u in unique:
         frequency[u] = elements.count(u)
 
-    #  Composing a list, sorted by frequency
+    #  From dictionary composing a list of, sorted by frequency
+    sorted_frequency = sorted(frequency.items(), key=lambda value_to_sort: value_to_sort[1], reverse=True)
     result = []
-    for x in range(len(frequency)):
-        for key in frequency:
-            if frequency[key] == max(frequency.values()) and max(frequency.values()) != 0:
-                result.append(key)
-                frequency[key] = 0
+    for (key, value) in sorted_frequency:
+        result.append(key)
     return result
 
 
@@ -33,9 +51,11 @@ def frequency_string_sort(input_string):
         frequency[character] = input_string.count(character)
 
     sorted_frequency = sorted(frequency.items(), key=lambda value_to_sort: value_to_sort[1], reverse=True)
-    print(sorted_frequency)
     output = ''
     for k, v in sorted_frequency:
         for i in range(v):
             output += k
     return output
+
+
+print(frequency_string_sort('aabbbbbbccc'))
