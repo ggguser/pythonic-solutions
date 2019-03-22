@@ -9,3 +9,5 @@ def zipper(list_1, list_2):
         for z in temp_tuple:
             zipped.append(z)
     return zipped
+
+
