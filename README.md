@@ -2,4 +2,4 @@
 
 Readable and clear.
 
-Shortest is not always that.
+Shortest solytion is not always the best one.
