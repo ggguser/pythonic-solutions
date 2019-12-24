@@ -1,3 +1,6 @@
+"""Examples of using jsonpath with apidoc"""
+
+
 def jsonpath_ng_example(apidoc_data):
     from jsonpath_ng.ext import parse as parse_ng
     method_parameters = parse_ng("$[*].parameter.fields.Parameter[?(@.field=='method')].allowedValues")
