@@ -59,12 +59,8 @@ def get_date_from_now_microseconds(seconds=0.0, *, minutes=0, hours=0, days=0):
     new_date = today + timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
     iso_new_date = new_date.isoformat(timespec='microseconds')
     _, microseconds = iso_new_date.split('.')
-    index = 0
-    for i in range(len(microseconds)):
-        if microseconds.endswith('0' * i):
-            index = i
-    microseconds = microseconds[:-index]
-    microseconds = f'.{microseconds}' if microseconds and microseconds != '0' else ''
+    microseconds = float(f'.{microseconds}')
+    microseconds = f'{microseconds:.5f}'.rstrip('0').rstrip('.')
     return new_date.isoformat(timespec='seconds') + microseconds + 'Z'
 
 
