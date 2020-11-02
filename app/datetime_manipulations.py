@@ -64,11 +64,12 @@ def get_date_from_now_microseconds(seconds=0.0, *, minutes=0, hours=0, days=0):
     return new_date.isoformat(timespec='seconds') + microseconds + 'Z'
 
 
-def get_date_from_now_milliseconds(seconds=0.0, *, minutes=0, hours=0, days=0):
+def get_date_from_now_milliseconds(seconds=0.0, *, milliseconds=0, minutes=0, hours=0, days=0):
     """
     Create date-time string in Cinarra format
 
-    :param seconds: int or float
+    :param seconds: float
+    :param milliseconds: int
     :param minutes: int
     :param hours: int
     :param days: int
@@ -86,11 +87,14 @@ def get_date_from_now_milliseconds(seconds=0.0, *, minutes=0, hours=0, days=0):
     >>> '2020-05-09T01:16:22.001Z'[-5:] in get_date_from_now_milliseconds(0.001)
     True
 
+    >>> get_date_from_now_milliseconds(0.001) == get_date_from_now_milliseconds(milliseconds=1)
+    True
+
     >>> '.' not in get_date_from_now_milliseconds(0.0001)
     True
     """
     today = datetime.now(timezone.utc).replace(microsecond=0, tzinfo=None)
-    new_date = today + timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
+    new_date = today + timedelta(milliseconds=milliseconds, seconds=seconds, minutes=minutes, hours=hours, days=days)
     iso_new_date = new_date.isoformat(timespec='milliseconds')
     _, milliseconds = iso_new_date.split('.')
     milliseconds = float(f'.{milliseconds}')
